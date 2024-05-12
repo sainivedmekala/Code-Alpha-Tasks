@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .heading {
+            color: #ffd700; /* gold color */
+            font-size: 36px;
+            margin-left: 50px;
+            margin-right: 200px;
+        }
+        .container {
+            background-color: #333;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+        h1 {
+            color: #fff;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #fff;
+        }
+        input[type="date"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #fff;
+            border-radius: 5px;
+            background-color: #444;
+            color: #fff;
+        }
+        button[type="submit"] {
+            background-color: #000;
+            color: white;
+            padding: 10px 20px;
+            border: 2px solid #fff;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button[type="submit"]:hover {
+            background-color: #0e0101;
+            color: #ffd700;
+            border-color: #ffd700;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #ffd700;
+        }
+    </style>
+</head>
+<body>
+    <div class="heading">Age Calculator</div>
+    <div class="container">
+        <h1>Calculate Your Age</h1>
+        <form id="age-form">
+            <label for="dob">Date of Birth:</label>
+            <input type="date" id="dob" required>
+            <button type="submit">Calculate Age</button>
+        </form>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        document.getElementById('age-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            var dob = new Date(document.getElementById('dob').value);
+            var now = new Date();
+            
+            var diff = now - dob; // Difference in milliseconds
+            
+            var years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25));
+            var months = Math.floor((diff % (1000 * 60 * 60 * 24 * 365.25)) / (1000 * 60 * 60 * 24 * 30.44));
+            var days = Math.floor((diff % (1000 * 60 * 60 * 24 * 30.44)) / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            
+            var resultText = "Your age is " + years + " years, " + months + " months, " + days + " days, " + hours + " hours, and " + minutes + " minutes.";
+            displayResult(resultText);
+        });
+
+        function displayResult(text) {
+            document.getElementById('result').innerText = text;
+        }
+    </script>
+</body>
+</html>

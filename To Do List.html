@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .heading {
+            color: #ffd700;
+            font-size: 36px;
+            margin-right: 200px;
+        }
+        .container {
+            background-color: #000000;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+        h2 {
+            color: #fcfcfc;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #4d4d4d;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #000;
+            color: white;
+            padding: 10px 20px;
+            border: 2px solid #fff;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0e0101;
+            color: #ffd700;
+            border-color: #ffd700;
+        }
+        .task-card {
+            background-color: #201f1f;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 10px;
+            text-align: left;
+        }
+        .completed {
+            text-decoration: line-through;
+            color: #777;
+        }
+        
+        a {
+            color: #757373;
+        }
+    </style>
+</head>
+<body>
+    <div class="heading"><h1>To-Do List</h1></div>
+    <div class="container">
+        <h2>Manage Your Tasks</h2>
+        <input type="text" id="taskInput" placeholder="Add a new task...">
+        <button onclick="addTask()">Add Task</button>
+        <div id="taskList">
+            
+        </div>
+        <a>Click to mark complete</a>
+    </div>
+
+    <script>
+        function addTask() {
+            var input = document.getElementById("taskInput");
+            var task = input.value.trim();
+            if (task !== "") {
+                var taskList = document.getElementById("taskList");
+                var taskCard = document.createElement("div");
+                taskCard.classList.add("task-card");
+                taskCard.onclick = function() {
+                    taskCard.classList.toggle("completed");
+                };
+                taskCard.textContent = task;
+                taskList.appendChild(taskCard);
+                input.value = "";
+            }
+        }
+    </script>
+</body>
+</html>
